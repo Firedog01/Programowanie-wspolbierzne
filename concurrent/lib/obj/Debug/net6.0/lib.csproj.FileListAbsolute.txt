@@ -1,0 +1,12 @@
+C:\Users\janru\Programowanie\wspolbierzne\concurrent\lib\bin\Debug\net6.0\lib.deps.json
+C:\Users\janru\Programowanie\wspolbierzne\concurrent\lib\bin\Debug\net6.0\lib.dll
+C:\Users\janru\Programowanie\wspolbierzne\concurrent\lib\bin\Debug\net6.0\ref\lib.dll
+C:\Users\janru\Programowanie\wspolbierzne\concurrent\lib\bin\Debug\net6.0\lib.pdb
+C:\Users\janru\Programowanie\wspolbierzne\concurrent\lib\obj\Debug\net6.0\lib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\janru\Programowanie\wspolbierzne\concurrent\lib\obj\Debug\net6.0\lib.AssemblyInfoInputs.cache
+C:\Users\janru\Programowanie\wspolbierzne\concurrent\lib\obj\Debug\net6.0\lib.AssemblyInfo.cs
+C:\Users\janru\Programowanie\wspolbierzne\concurrent\lib\obj\Debug\net6.0\lib.csproj.CoreCompileInputs.cache
+C:\Users\janru\Programowanie\wspolbierzne\concurrent\lib\obj\Debug\net6.0\lib.dll
+C:\Users\janru\Programowanie\wspolbierzne\concurrent\lib\obj\Debug\net6.0\ref\lib.dll
+C:\Users\janru\Programowanie\wspolbierzne\concurrent\lib\obj\Debug\net6.0\lib.pdb
+C:\Users\janru\Programowanie\wspolbierzne\concurrent\lib\obj\Debug\net6.0\lib.csproj.AssemblyReference.cache
