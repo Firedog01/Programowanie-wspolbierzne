@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Ellipse x:Name="Ball" HorizontalAlignment="Left" Height="60" Margin="127,247,0,0" VerticalAlignment="Top" Width="60" Fill="Red" Stroke="Black" StrokeThickness="4"/>
+        <Rectangle HorizontalAlignment="Left" Height="124" Margin="607,242,0,0" Stroke="Black" VerticalAlignment="Top" Width="92" Fill="Red"/>
+        <Rectangle HorizontalAlignment="Left" Height="40" Margin="613,366,0,0" Stroke="Black" VerticalAlignment="Top" Width="32" Fill="Red"/>
+        <Rectangle HorizontalAlignment="Left" Height="40" Margin="653,366,0,0" Stroke="Black" VerticalAlignment="Top" Width="34" Fill="Red"/>
+        <Rectangle HorizontalAlignment="Left" Height="85" Margin="579,254,0,0" Stroke="Black" VerticalAlignment="Top" Width="28" Fill="Red"/>
+        <Ellipse HorizontalAlignment="Left" Height="37" Margin="653,258,0,0" Stroke="Black" VerticalAlignment="Top" Width="68" Fill="#FF007EFF"/>
+        <Label Content="Sus&#xD;&#xA;&#xD;&#xA;" HorizontalAlignment="Left" Margin="699,184,0,0" VerticalAlignment="Top" Height="74" Width="96" FontSize="22"/>
 
     </Grid>
 </Window>
