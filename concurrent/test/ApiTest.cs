@@ -8,7 +8,7 @@ namespace test
     public class ApiTest
     {
         [TestMethod]
-        public void SingletonTest()
+        public void CreateUnmovingMarbleTest()
         {
             int a = Api.Instance.MarbleCount;
             Assert.AreEqual(0, a);
