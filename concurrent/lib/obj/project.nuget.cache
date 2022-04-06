@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Rqrm6Al4mayVAhzCIi5bL6/3fS+H/QIeHKG6WhGYDPvqjnC9hwtNxrT79B9AzVFBO/20f5vnGBHzib34AsXIKg==",
+  "dgSpecHash": "RyaVklC6p8OtMOFAOaMc3ezMyO2VV8Ng0vyWnt4ovtBsC9N8owmhCx2R2A6YPMJfZRvT7WE4Fave8nFW6FTe9w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\janru\\Programowanie\\wspolbierzne\\concurrent\\lib\\lib.csproj",
+  "projectFilePath": "C:\\Users\\janru\\Programowanie\\wspolbierzne\\concurrent\\lib\\logic.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

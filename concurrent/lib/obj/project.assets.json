@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\janru\\Programowanie\\wspolbierzne\\concurrent\\lib\\lib.csproj",
-      "projectName": "lib",
-      "projectPath": "C:\\Users\\janru\\Programowanie\\wspolbierzne\\concurrent\\lib\\lib.csproj",
+      "projectUniqueName": "C:\\Users\\janru\\Programowanie\\wspolbierzne\\concurrent\\lib\\logic.csproj",
+      "projectName": "logic",
+      "projectPath": "C:\\Users\\janru\\Programowanie\\wspolbierzne\\concurrent\\lib\\logic.csproj",
       "packagesPath": "C:\\Users\\janru\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\janru\\Programowanie\\wspolbierzne\\concurrent\\lib\\obj\\",
       "projectStyle": "PackageReference",
