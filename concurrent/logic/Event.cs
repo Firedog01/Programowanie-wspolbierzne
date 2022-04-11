@@ -1,12 +1,18 @@
 ﻿namespace logic.Event
 {
-    public delegate void Handler(object src, Info info);
+    public delegate void MarbleEventHandler(object src, MarbleArgs info);
+    // https://stackoverflow.com/questions/623451/how-can-i-make-my-own-event-in-c
 
     public class MarbleInfo
     {
         private int index;
+        public int Index { get { return index; } }
         private double x;
+        public double X { get { return x; } }
+
         private double y;
+        public double Y { get { return y; } }
+
 
         public MarbleInfo(int idx, double x, double y)
         {
@@ -14,35 +20,13 @@
             this.x = x; 
             this.y = y;
         }
-
-        public int GetIndex()
-        {
-            return index;
-        }
-
-        public double GetX()
-        {
-            return x;
-        }
-
-        public double GetY()
-        {
-            return y;
-        }
-
     }
 
-    public class Info : EventArgs
+    public class MarbleArgs : EventArgs
     {
         private MarbleInfo[] infoArr;
-        public Info(MarbleInfo[] marbles)
-        {
-            this.infoArr = marbles;
-        }
+        public MarbleArgs(MarbleInfo[] marbles) { infoArr = marbles; }
 
-        public MarbleInfo[] GetInfo()
-        {
-            return infoArr;
-        }
+        public MarbleInfo[] InfoArr { get { return infoArr; } }
     }
 }

@@ -87,8 +87,6 @@ C:\Users\janru\Programowanie\wspolbierzne\concurrent\test\bin\Debug\net6.0\zh-Ha
 C:\Users\janru\Programowanie\wspolbierzne\concurrent\test\bin\Debug\net6.0\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
 C:\Users\janru\Programowanie\wspolbierzne\concurrent\test\bin\Debug\net6.0\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 C:\Users\janru\Programowanie\wspolbierzne\concurrent\test\bin\Debug\net6.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-C:\Users\janru\Programowanie\wspolbierzne\concurrent\test\bin\Debug\net6.0\lib.dll
-C:\Users\janru\Programowanie\wspolbierzne\concurrent\test\bin\Debug\net6.0\lib.pdb
 C:\Users\janru\Programowanie\wspolbierzne\concurrent\test\obj\Debug\net6.0\test.csproj.AssemblyReference.cache
 C:\Users\janru\Programowanie\wspolbierzne\concurrent\test\obj\Debug\net6.0\test.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\janru\Programowanie\wspolbierzne\concurrent\test\obj\Debug\net6.0\test.AssemblyInfoInputs.cache
@@ -200,3 +198,5 @@ C:\Users\LiptonLeon\git\Programowanie-wspolbierzne\concurrent\test\obj\Debug\net
 C:\Users\LiptonLeon\git\Programowanie-wspolbierzne\concurrent\test\obj\Debug\net6.0\test.csproj.CopyComplete
 C:\Users\LiptonLeon\git\Programowanie-wspolbierzne\concurrent\test\obj\Debug\net6.0\test.genruntimeconfig.cache
 C:\Users\LiptonLeon\git\Programowanie-wspolbierzne\concurrent\test\obj\Debug\net6.0\ref\test.dll
+C:\Users\janru\Programowanie\wspolbierzne\concurrent\test\bin\Debug\net6.0\logic.dll
+C:\Users\janru\Programowanie\wspolbierzne\concurrent\test\bin\Debug\net6.0\logic.pdb

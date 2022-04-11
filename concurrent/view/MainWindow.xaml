@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:view"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Cursor="Wait">
         <Ellipse x:Name="Ball" HorizontalAlignment="Left" Height="60" Margin="127,247,0,0" VerticalAlignment="Top" Width="60" Fill="Red" Stroke="Black" StrokeThickness="4"/>
         <Rectangle HorizontalAlignment="Left" Height="124" Margin="607,242,0,0" Stroke="Black" VerticalAlignment="Top" Width="92" Fill="Red"/>
         <Rectangle HorizontalAlignment="Left" Height="40" Margin="613,366,0,0" Stroke="Black" VerticalAlignment="Top" Width="32" Fill="Red"/>
