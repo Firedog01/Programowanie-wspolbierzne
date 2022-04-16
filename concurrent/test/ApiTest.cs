@@ -19,6 +19,7 @@ namespace test
             myListener = new TextWriterTraceListener("ApiTest.log", "myListener");
             myListener.WriteLine("================ Beginning of test class at: " + DateTime.Now.ToString("MM-dd hh:mm:ss"));
             myListener.Flush();
+            Api.Instance.onPosUpdated += new MarbleEventHandler(PrintMarblesPos);
         }
 
         ~ApiTest()
@@ -32,7 +33,7 @@ namespace test
             myListener.WriteLine("ApiListenerTest ------------------------");
             Api.Instance.CreateUnmovingMarble();
             myListener.WriteLine("created one marble.");
-            Api.Instance.onPosUpdated += new MarbleEventHandler(printMarblesPos);
+            
             myListener.WriteLine("added handler to event.");
 
             myListener.WriteLine("starting to sleep on main thread.");
@@ -50,35 +51,33 @@ namespace test
             myListener.WriteLine("CreateDeleteTest ------------------------");
             myListener.Flush();
             int a;
-            Api.Instance.onPosUpdated += new MarbleEventHandler(printMarblesPos);
 
-            a = Api.Instance.MarbleCount;
-            Assert.AreEqual(0, a);
+            for (int i = 0; i < 3; i++)
+            {
+                a = Api.Instance.MarbleCount;
+                Assert.AreEqual(i, a);
+                Api.Instance.CreateUnmovingMarble();
+                Thread.Sleep(threadWaitTime);
+            }
 
-            Thread.Sleep(threadWaitTime);
-
-            Api.Instance.CreateUnmovingMarble();
-            a = Api.Instance.MarbleCount;
-            Assert.AreEqual(1, a);
-
-            Thread.Sleep(threadWaitTime);
-
-            Api.Instance.CreateUnmovingMarble();
-            a = Api.Instance.MarbleCount;
-            Assert.AreEqual(2, a);
-
-            Thread.Sleep(threadWaitTime);
-
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
                 Api.Instance.DeleteMarble(0);
             myListener.WriteLine("deleted three marbles.");
             myListener.WriteLine("end CreateDeleteTest ------------------------");
             myListener.Flush();
         }
 
+        [TestMethod]
+        public void CreateMovingTest()
+        {
+            Api.Instance.CreateMovingMarble();
+            Api.Instance.Start();
+            Thread.Sleep(threadWaitTime);
+        }
+
         
 
-        public void printMarblesPos(object source, MarbleArgs args)
+        public void PrintMarblesPos(object source, MarbleArgs args)
         {
             myListener.WriteLine("onPosUpdated:");
             foreach(MarbleInfo arg in args.InfoArr)

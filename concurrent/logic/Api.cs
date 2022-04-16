@@ -162,7 +162,7 @@ namespace logic
         private static float GetDeltaTime()
         {
             long now = DateTime.Now.Ticks;
-            float dT = (now - lastTime); // / 1000
+            float dT = (now - lastTime) / 1000.0f;
             lastTime = now;
             return dT;
         }
