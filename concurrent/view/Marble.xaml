@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Canvas>
-        <Ellipse Height="100" Width="100" StrokeThickness="0" Canvas.Left="350" Canvas.Top="175">
+        <Ellipse Height="25" Width="25" StrokeThickness="0" Canvas.Left="350" Canvas.Top="175">
             <Ellipse.Stroke>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <LinearGradientBrush.RelativeTransform>
@@ -41,7 +41,7 @@
                 </RadialGradientBrush>
             </Ellipse.Fill>
         </Ellipse>
-        <Ellipse RenderTransformOrigin="0.671,0.641" Height="28" Canvas.Left="355" Canvas.Top="187" Width="51">
+        <Ellipse RenderTransformOrigin="0.671,0.641" Height="7" Canvas.Left="350" Canvas.Top="182" Width="13">
             <Ellipse.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
