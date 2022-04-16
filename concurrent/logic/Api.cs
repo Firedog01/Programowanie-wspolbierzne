@@ -16,25 +16,29 @@ namespace logic
         private static Thread apiThread;
 
         // time
-        private static long lastTime = 0;
+        private static long lastTime;
 
+        // random
         private static Random rand;
 
-        private int marbleCount;
-        private List<Marble> marbles;
-        private Vector2 canvasSize;
-        private float dafaultSpeedValue;
-        private float newMarbleRadius;
+        private static List<Marble> marbles;
+        private static Vector2 canvasSize;
+        private static float defaultSpeedValue;
+        private static float newMarbleRadius;
+        private static bool stop;
 
         private Api()
         {
-            marbleCount = 0;
-            marbles = new List<Marble>();
             canvasSize = new Vector2(1000, 800);
             newMarbleRadius = 50;
+            defaultSpeedValue = 20;
+            stop = true;
+
+            lastTime = 0;
+            marbles = new List<Marble>();
             rand = new Random();
-            // api loop needs to be created in separate thread
-            apiThread = new Thread(ApiLoop);
+            
+            apiThread = new Thread(ApiLoop); // api loop needs to be created in separate thread
             apiThread.Start();
         }
 
@@ -53,7 +57,7 @@ namespace logic
 
 
         // ================= ACCESS METHODS =================
-        public int MarbleCount { get { return marbleCount; } }
+        public int MarbleCount { get { return marbles.Count; } }
 
         public Vector2 CanvasSize 
         { 
@@ -79,29 +83,40 @@ namespace logic
         public void CreateUnmovingMarble()
         {
             Vector2 initialSpeed = new Vector2(0, 0);
-            Vector2 initialPos;
-            initialPos = canvasSize / 2;
+            Vector2 initialPos = canvasSize / 2;
             marbles.Add(new Marble(initialSpeed, initialPos, newMarbleRadius));
-            marbleCount = marbles.Count;
         }
         public void CreateMovingMarble()
         {
-            Vector2 initialSpeed = new Vector2(0, 0);
-            Vector2 initialPos;
-            initialPos = canvasSize / 2;
+            Vector2 initialSpeed = new Vector2(defaultSpeedValue, 0);
+            double deg = rand.NextDouble() * 360;
+            initialSpeed = Rotate(initialSpeed, deg);
+            Vector2 initialPos = canvasSize / 2;
             marbles.Add(new Marble(initialSpeed, initialPos, newMarbleRadius));
-            marbleCount = marbles.Count;
         }
 
         public void Start()
         {
+            foreach (Marble m in marbles)
+            {
+                if (m.Speed == Vector2.Zero)
+                {
+                    Vector2 newSpeed = new Vector2(defaultSpeedValue, 0);
+                    double deg = rand.NextDouble() * 360;
+                    m.Speed = Rotate(newSpeed, deg);
+                }
+            }
+            stop = false;
+        }
 
+        public void Stop()
+        {
+            stop = true;
         }
 
         public void DeleteMarble(int idx)
         {
             marbles.RemoveAt(idx);
-            marbleCount = marbles.Count;
         }
 
 
@@ -109,24 +124,41 @@ namespace logic
 
         private void ApiLoop()
         {
-            float delta;
             GetDeltaTime(); // initialize
 
             while (true)
             {
-                delta = GetDeltaTime();
-                updatePos(delta);
+                if (stop)
+                    continue;
+
+                UpdatePos(GetDeltaTime());
 
                 // send updated position
                 if (onPosUpdated != null)
                 {
-                    Event.MarbleInfo[] args = getMarbleArgs();
+                    Event.MarbleInfo[] args = GetMarbleArgs();
                     onPosUpdated(this, new Event.MarbleArgs(args));
                 }
             }
         }
 
         // ================= PRIVATE METHODS =================
+
+        private void UpdatePos(float delta)
+        {
+            foreach (Marble m in marbles)
+            {
+                m.Position = m.Position + m.Speed * delta;
+                m.Position = ClampOffCanvas(m);
+
+                // bounce off canvas
+
+                var newSpeed = GetRandomSpeed(m.Speed);
+                m.Speed = newSpeed;
+            }
+
+            // check colisions
+        }
         private static float GetDeltaTime()
         {
             long now = DateTime.Now.Ticks;
@@ -135,7 +167,7 @@ namespace logic
             return dT;
         }
 
-        private Event.MarbleInfo[] getMarbleArgs()
+        private Event.MarbleInfo[] GetMarbleArgs()
         {
             Event.MarbleInfo[] ret = new Event.MarbleInfo[marbles.Count];
             int idx = 0;
@@ -147,26 +179,13 @@ namespace logic
             return ret;
         }
 
-        private void updatePos(float delta)
+        private static Vector2 GetRandomSpeed(Vector2 speed)
         {
-            foreach (Marble m in marbles)
-            {
-                var newPos = m.Position + m.Speed * delta;
-                m.Position = newPos;
-                ClampOffCanvas(m);
-                var newSpeed = getRandomSpeed(m.Speed);
-
-            }
-        }
-
-        private static Vector2 getRandomSpeed(Vector2 speed)
-        {
-
-            double deg = rand.NextDouble(); 
+            double deg = rand.NextDouble() * 20 - 10; 
             return Rotate(speed, deg);
         }
 
-        private static Vector2 Rotate(this Vector2 v, double degrees)
+        private static Vector2 Rotate(Vector2 v, double degrees)
         {
             return new Vector2(
                 (float)(v.X * Math.Cos(degrees) - v.Y * Math.Sin(degrees)),
@@ -174,7 +193,7 @@ namespace logic
             );
         }
 
-        private void ClampOffCanvas(Marble m)
+        private Vector2 ClampOffCanvas(Marble m)
         {
             if(m.Position.X - m.Radius < 0)
                 m.Position = new Vector2(m.Radius, m.Position.Y);
@@ -185,7 +204,7 @@ namespace logic
                 m.Position = new Vector2(m.Position.X, m.Radius);
             else if (m.Position.Y + m.Radius > canvasSize.Y)
                 m.Position = new Vector2(m.Position.X, canvasSize.X - m.Radius);
-
+            return m.Position;
         }
     }
 }
