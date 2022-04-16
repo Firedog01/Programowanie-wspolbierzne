@@ -4,6 +4,21 @@ namespace logic
 {
     public sealed class Api
     {
+        // singleton
+        private static Api instance;
+        private static readonly object padlock = new object();
+
+        // event
+        public event Event.MarbleEventHandler onPosUpdated;
+
+        // api thread
+        private static Thread apiThread;
+
+        private int marbleCount;
+        private List<Marble> marbles;
+        private (double, double) canvasSize;
+        private double newMarbleRadius;
+
         private Api()
         {
             marbleCount = 0;
@@ -14,10 +29,6 @@ namespace logic
             apiThread = new Thread(ApiLoop);
             apiThread.Start();
         }
-
-        // singleton
-        private static Api instance = null;
-        private static readonly object padlock = new object();
 
         public static Api Instance
         {
@@ -32,23 +43,7 @@ namespace logic
             }
         }
 
-        // event
-        public event Event.MarbleEventHandler onPosUpdated;
-
-        // api thread
-        private static Thread apiThread;
-
-        
-        private int marbleCount;
-        private List<Marble> marbles;
-        private (double, double) canvasSize;
-        private double newMarbleRadius;
-
-
-        public int MarbleCount 
-        {
-            get { return marbleCount; } 
-        }
+        public int MarbleCount { get { return marbleCount; } }
 
         public (double, double) CanvasSize 
         { 
@@ -61,14 +56,12 @@ namespace logic
                 }
             }
         }
-
         
         public double NewMarbleRadius
         {
             get { return newMarbleRadius; }
             set { newMarbleRadius = value; }
         }
-
 
         // will create marble at the center of canvas
         public void CreateUnmovingMarble()
@@ -91,9 +84,9 @@ namespace logic
             int waitTime_ms = 1000 / fps; // 50 fps
             while (true)
             {
-                Thread.Sleep(waitTime_ms); 
+                Thread.Sleep(waitTime_ms);
 
-                // todo update pos
+                updatePos();
 
                 if(onPosUpdated != null)
                 {
@@ -116,6 +109,9 @@ namespace logic
             return ret;
         }
 
-
+        private void updatePos()
+        {
+            
+        }
     }
 }
