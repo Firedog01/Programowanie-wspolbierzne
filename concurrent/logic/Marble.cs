@@ -1,29 +1,31 @@
-﻿namespace logic
+﻿using System.Numerics;
+
+namespace logic
 {
     public class Marble
     {
-        private (double, double) speed;
-        public (double, double) Speed
+        private Vector2 speed;
+        public Vector2 Speed
         {
             get { return speed; }
             set { speed = value; }
         }
 
-        private (double, double) position;
-        public (double, double) Position
+        private Vector2 position;
+        public Vector2 Position
         {
             get { return position; }
             set { position = value; }
         }
 
-        private double radius;
-        public double Radius 
+        private float radius;
+        public float Radius 
         { 
             get { return radius; } 
             set { radius = value; } 
         }
 
-        public Marble((double, double) _speed, (double, double) _position, double _radius)
+        public Marble(Vector2 _speed, Vector2 _position, float _radius)
         {
             speed = _speed;
             position = _position;
