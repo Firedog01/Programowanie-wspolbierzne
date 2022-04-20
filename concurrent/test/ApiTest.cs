@@ -19,7 +19,7 @@ namespace test
             myListener = new TextWriterTraceListener("ApiTest.log", "myListener");
             myListener.WriteLine("================ Beginning of test class at: " + DateTime.Now.ToString("MM-dd hh:mm:ss"));
             myListener.Flush();
-            Api.Instance.onPosUpdated += new MarbleEventHandler(PrintMarblesPos);
+            Api.Instance.PosUpdated += new MarbleEventHandler(PrintMarblesPos);
         }
 
         ~ApiTest()
@@ -79,7 +79,7 @@ namespace test
 
         public void PrintMarblesPos(object source, MarbleArgs args)
         {
-            myListener.WriteLine("onPosUpdated:");
+            myListener.WriteLine("PosUpdated:");
             foreach(MarbleInfo arg in args.InfoArr)
             {
                 string s = "x: " + arg.X;

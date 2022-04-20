@@ -3,14 +3,14 @@ using System.Numerics;
 
 namespace logic
 {
-    public sealed class Api
+    public class Api
     {
         // singleton
         private static Api instance;
         private static readonly object padlock = new object();
 
         // event
-        public event Event.MarbleEventHandler onPosUpdated;
+        public event Event.MarbleEventHandler PosUpdated;
 
         // api thread
         private static Thread apiThread;
@@ -134,10 +134,10 @@ namespace logic
                 UpdatePos(GetDeltaTime());
 
                 // send updated position
-                if (onPosUpdated != null)
+                if (PosUpdated != null)
                 {
                     Event.MarbleInfo[] args = GetMarbleArgs();
-                    onPosUpdated(this, new Event.MarbleArgs(args));
+                    PosUpdated(this, new Event.MarbleArgs(args));
                 }
             }
         }
