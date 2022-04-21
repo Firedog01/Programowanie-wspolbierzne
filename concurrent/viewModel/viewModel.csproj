@@ -14,8 +14,4 @@
     <None Remove="viewModel" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\logic\logic.csproj" />
-  </ItemGroup>
-
 </Project>

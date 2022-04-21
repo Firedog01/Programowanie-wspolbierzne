@@ -1,5 +1,8 @@
 ﻿using logic;
 using logic.Event;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Numerics;
 
 namespace model
 {
@@ -10,6 +13,7 @@ namespace model
         private static readonly object padlock = new object();
 
         //
+        public static ObservableCollection<Vector2> Marbles;
 
 
         private Model() 
