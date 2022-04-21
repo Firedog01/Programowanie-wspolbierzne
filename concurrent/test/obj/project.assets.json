@@ -6238,19 +6238,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\janru\\.nuget\\packages\\": {}
+    "C:\\Users\\LiptonLeon\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\janru\\Programowanie\\wspolbierzne\\concurrent\\test\\test.csproj",
+      "projectUniqueName": "C:\\Users\\LiptonLeon\\git\\concurrent\\test\\test.csproj",
       "projectName": "test",
-      "projectPath": "C:\\Users\\janru\\Programowanie\\wspolbierzne\\concurrent\\test\\test.csproj",
-      "packagesPath": "C:\\Users\\janru\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\janru\\Programowanie\\wspolbierzne\\concurrent\\test\\obj\\",
+      "projectPath": "C:\\Users\\LiptonLeon\\git\\concurrent\\test\\test.csproj",
+      "packagesPath": "C:\\Users\\LiptonLeon\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\LiptonLeon\\git\\concurrent\\test\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\janru\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\LiptonLeon\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6264,8 +6264,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\janru\\Programowanie\\wspolbierzne\\concurrent\\logic\\logic.csproj": {
-              "projectPath": "C:\\Users\\janru\\Programowanie\\wspolbierzne\\concurrent\\logic\\logic.csproj"
+            "C:\\Users\\LiptonLeon\\git\\concurrent\\logic\\logic.csproj": {
+              "projectPath": "C:\\Users\\LiptonLeon\\git\\concurrent\\logic\\logic.csproj"
             }
           }
         }
@@ -6312,7 +6312,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
