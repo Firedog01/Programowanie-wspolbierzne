@@ -10,4 +10,8 @@
     <None Remove="NewFile1.txt" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\data\data.csproj" />
+  </ItemGroup>
+
 </Project>

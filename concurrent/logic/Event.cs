@@ -1,7 +1,6 @@
 ﻿namespace logic.Event
 {
     public delegate void MarbleEventHandler(object src, MarbleArgs info);
-    // https://stackoverflow.com/questions/623451/how-can-i-make-my-own-event-in-c
 
     public class MarbleInfo
     {

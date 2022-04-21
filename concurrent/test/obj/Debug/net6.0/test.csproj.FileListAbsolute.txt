@@ -301,3 +301,5 @@ C:\Users\LiptonLeon\git\concurrent\test\obj\Debug\net6.0\refint\test.dll
 C:\Users\LiptonLeon\git\concurrent\test\obj\Debug\net6.0\test.pdb
 C:\Users\LiptonLeon\git\concurrent\test\obj\Debug\net6.0\test.genruntimeconfig.cache
 C:\Users\LiptonLeon\git\concurrent\test\obj\Debug\net6.0\ref\test.dll
+C:\Users\janru\Programowanie\wspolbierzne\concurrent\test\bin\Debug\net6.0\data.dll
+C:\Users\janru\Programowanie\wspolbierzne\concurrent\test\bin\Debug\net6.0\data.pdb

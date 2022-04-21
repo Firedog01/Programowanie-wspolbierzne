@@ -2,7 +2,7 @@
 
 namespace logic
 {
-    public class Marble
+    internal class Marble
     {
         private Vector2 speed;
         public Vector2 Speed

@@ -18,7 +18,7 @@ namespace model
 
         private Model() 
         {
-            Api.Instance.PosUpdated += new MarbleEventHandler(OnPosUpdated);
+            LogicApiImplementation.Instance.PosUpdated += new MarbleEventHandler(OnPosUpdated);
         }
 
         public static Model Instance
