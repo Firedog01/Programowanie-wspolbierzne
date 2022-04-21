@@ -1,9 +1,10 @@
 ﻿using System.Diagnostics;
 using System.Numerics;
+using data;
 
 namespace logic
 {
-    public class Api
+    public sealed class Api
     {
         // singleton
         private static Api instance;
@@ -21,6 +22,8 @@ namespace logic
         // random
         private static Random rand;
 
+        DataApi dataApi;
+
         private static List<Marble> marbles;
         private static Vector2 canvasSize;
         private static float defaultSpeedValue;
@@ -33,6 +36,8 @@ namespace logic
             newMarbleRadius = 50;
             defaultSpeedValue = 20;
             stop = true;
+
+            dataApi = null;
 
             lastTime = 0;
             marbles = new List<Marble>();
@@ -57,6 +62,7 @@ namespace logic
 
 
         // ================= ACCESS METHODS =================
+
         public int MarbleCount { get { return marbles.Count; } }
 
         public Vector2 CanvasSize 
@@ -86,6 +92,7 @@ namespace logic
             Vector2 initialPos = canvasSize / 2;
             marbles.Add(new Marble(initialSpeed, initialPos, newMarbleRadius));
         }
+
         public void CreateMovingMarble()
         {
             Vector2 initialSpeed = new Vector2(defaultSpeedValue, 0);

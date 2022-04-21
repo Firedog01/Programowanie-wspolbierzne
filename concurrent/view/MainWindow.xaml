@@ -12,7 +12,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Canvas x:Name="canvas" Margin="12,14,12,47" SizeChanged="canvas_SizeChanged" Grid.RowSpan="2">
+        <!-- SizeChanged="canvas_SizeChanged" -->
+        <Canvas x:Name="canvas" Margin="12,14,12,47" Grid.RowSpan="2">
             <Canvas.Background>
                 <RadialGradientBrush MappingMode="RelativeToBoundingBox" SpreadMethod="Pad" RadiusX="1" RadiusY="1" Center="0,0">
                     <GradientStop Color="#FF292929" Offset="1"/>

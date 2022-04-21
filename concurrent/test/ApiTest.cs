@@ -12,7 +12,7 @@ namespace test
     public class ApiTest
     {
         private TextWriterTraceListener myListener;
-        private int threadWaitTime = 400;
+        private int threadWaitTime = 100;
         public ApiTest()
         {
             // file located in concurrent\test\bin\Debug\net6.0\ApiTest.log
