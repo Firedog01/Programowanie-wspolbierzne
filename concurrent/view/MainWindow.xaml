@@ -13,15 +13,33 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <!-- SizeChanged="canvas_SizeChanged" -->
-        <Canvas x:Name="canvas" Margin="12,14,12,47" Grid.RowSpan="2">
-            <Canvas.Background>
-                <RadialGradientBrush MappingMode="RelativeToBoundingBox" SpreadMethod="Pad" RadiusX="1" RadiusY="1" Center="0,0">
-                    <GradientStop Color="#FF292929" Offset="1"/>
-                    <GradientStop Color="#FF404040" Offset="0"/>
-                </RadialGradientBrush>
-            </Canvas.Background>
-            <view:Marble/>
-        </Canvas>
+        <!-- Here marbles are contained -->
+        <ItemsControl  ItemsSource="{Binding MarbleList}" Margin="0,0,0,0" Foreground="White" Grid.RowSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas Margin="0,0,0,0" SizeChanged="canvas_SizeChanged">
+                        <Canvas.Background>
+                            <RadialGradientBrush>
+                                <GradientStop Color="#FF1C1C1C" Offset="1"/>
+                                <GradientStop Color="#FF302F2F" Offset="0"/>
+                            </RadialGradientBrush>
+                        </Canvas.Background>
+                    </Canvas>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="Canvas.Left" Value="{Binding position.X}"/>
+                    <Setter Property="Canvas.Top" Value="{Binding position.Y}"/>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <view:Marble d:IsHidden="True"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <!-- There marbles were contained -->
         <Border BorderBrush="#FF404040" BorderThickness="2,2,2,2" Margin="10,12,10,45" Grid.RowSpan="2" CornerRadius="5,5,5,5"/>
         <StackPanel Orientation="Horizontal" Margin="10,399,14,10" MinHeight="25" MaxHeight="25" Grid.Row="1" Height="25">
             <Button x:Name="startButton" Command="{Binding StartCommand}" Content="Start" Width="50" Margin="0,0,5,0" Foreground="White" Background="#FF404040" BorderBrush="{x:Null}" Height="25">

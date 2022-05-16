@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UMUzholIU32U0kvPVrzy/jk8Wi5IyS6n3uTojEXAyhHqY7xrKfYV0k3co0ohGP1C7OJgYbZYBPgM3/yR5SRALA==",
+  "dgSpecHash": "6XLWDmQF62hkq027oHd5GGH83AjkSo4bcWrTCJn1qmuVSUvmWTIvrBVPkbwbWK1VWliKZPW1u4Y3/batmPooDw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\LiptonLeon\\git\\concurrent\\test\\test.csproj",
+  "projectFilePath": "C:\\Users\\LiptonLeon\\git\\Programowanie-wspolbierzne\\concurrent\\test\\test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LiptonLeon\\.nuget\\packages\\coverlet.collector\\3.1.0\\coverlet.collector.3.1.0.nupkg.sha512",
     "C:\\Users\\LiptonLeon\\.nuget\\packages\\microsoft.codecoverage\\16.11.0\\microsoft.codecoverage.16.11.0.nupkg.sha512",

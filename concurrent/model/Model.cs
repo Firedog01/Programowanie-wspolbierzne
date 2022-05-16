@@ -13,12 +13,13 @@ namespace model
         private static readonly object padlock = new object();
 
         //
-        public static ObservableCollection<Vector2> Marbles;
-
+        public static ObservableCollection<Marble> Marbles { get; set; }
+        public static int marbleCount { get; set; }
 
         private Model() 
         {
-            LogicApiImplementation.Instance.PosUpdated += new MarbleEventHandler(OnPosUpdated);
+            Marbles = new ObservableCollection<Marble>();
+            LogicApi.Implementation.PosUpdated += new MarbleEventHandler(OnPosUpdated);
         }
 
         public static Model Instance
@@ -34,8 +35,33 @@ namespace model
             }
         }
 
+        public void init()
+        {
+            // nothing
+        }
+
         public void OnPosUpdated(object source, MarbleArgs args)
         {
+            
         }
+
+        public void startMarbles(int marbles, float canvasWidth, float canvasHeight)
+        {
+            LogicApi.Implementation.CanvasSize = new Vector2(canvasWidth, canvasHeight);
+            LogicApi.Implementation.marbles.Clear();
+            marbleCount = marbles;
+            for(int i=0; i<marbleCount; i++)
+            {
+                LogicApi.Implementation.CreateMovingMarble();
+            }
+            LogicApi.Implementation.Start();
+            Marbles = new ObservableCollection<Marble>(LogicApi.Implementation.marbles);
+        }
+
+        public void stopMarbles()
+        {
+            LogicApi.Implementation.Stop();
+        }
+
     }
 }

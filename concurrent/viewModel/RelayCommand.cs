@@ -1,67 +1,29 @@
 ﻿using System;
 using System.Windows.Input;
 
-// https://stackoverflow.com/questions/34996198/the-name-commandmanager-does-not-exist-in-the-current-context-visual-studio-2
-
-namespace viewModel
+namespace ViewModel
 {
-    public class RelayCommand : ICommand
+    internal class RelayCommand : ICommand
     {
-        private readonly Action execute;
-        private readonly Func<bool> canExecute;
-
-        public RelayCommand(Action execute)
-            : this(execute, null)
-        { }
-
-        public RelayCommand(Action execute, Func<bool> canExecute)
-        {
-            if (execute == null)
-                throw new ArgumentNullException("execute is null.");
-
-            this.execute = execute;
-            this.canExecute = canExecute;
-            this.RaiseCanExecuteChangedAction = RaiseCanExecuteChanged;
-            SimpleCommandManager.AddRaiseCanExecuteChangedAction(ref RaiseCanExecuteChangedAction);
-        }
-
-        ~RelayCommand()
-        {
-            RemoveCommand();
-        }
-
-        public void RemoveCommand()
-        {
-            SimpleCommandManager.RemoveRaiseCanExecuteChangedAction(RaiseCanExecuteChangedAction);
-        }
-
-        bool ICommand.CanExecute(object parameter)
-        {
-            return CanExecute;
-        }
-
-        public void Execute(object parameter)
-        {
-            execute();
-            SimpleCommandManager.RefreshCommandStates();
-        }
-
-        public bool CanExecute
-        {
-            get { return canExecute == null || canExecute(); }
-        }
-
-        public void RaiseCanExecuteChanged()
-        {
-            var handler = CanExecuteChanged;
-            if (handler != null)
-            {
-                handler(this, new EventArgs());
-            }
-        }
-
-        private readonly Action RaiseCanExecuteChangedAction;
+        private readonly Action _execute;
+        private readonly Func<bool> _canExecute;
 
         public event EventHandler CanExecuteChanged;
+
+        public RelayCommand(Action execute, Func<bool> canExecute = null)
+        {
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+            _canExecute = canExecute;
+        }
+
+
+        public bool CanExecute(object parameter) => _canExecute == null || _canExecute();
+
+        public void Execute(object parameter) => _execute();
+
+        internal void RaiseCanExecuteChanged()
+        {
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

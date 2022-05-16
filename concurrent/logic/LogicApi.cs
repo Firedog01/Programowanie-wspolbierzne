@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System.Collections.ObjectModel;
+using System.Numerics;
 using logic.Event;
 
 namespace logic
@@ -7,6 +8,7 @@ namespace logic
     {
         // singleton
         private static LogicApiImplementation implementation;
+        public ObservableCollection<Marble> marbles { get; private set; } = new ObservableCollection<Marble>();
         private static readonly object padlock = new object();
 
         public static LogicApi Implementation

@@ -25,7 +25,7 @@ namespace view
         public MainWindow()
         {
             AllocConsole();
-            //DataContext = new ViewModel();
+            DataContext = new viewModel.ViewModel();
             InitializeComponent();
         }
 
@@ -33,13 +33,14 @@ namespace view
         [System.Runtime.InteropServices.DllImport("kernel32.dll")]
         private static extern bool AllocConsole();
 
-        /*
+        
         // Actual canvas size cannot be access using binding
         private void canvas_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            var vm = DataContext as ViewModel;
+            var vm = DataContext as viewModel.ViewModel;
             vm.CanvasHeight = (float)e.NewSize.Height;
             vm.CanvasWidth = (float)e.NewSize.Width;
-        }*/
+            Console.WriteLine("Changed window sizez");
+        }
     }
 }

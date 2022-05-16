@@ -20,7 +20,7 @@ namespace logic
 
         DataApi dataApi;
 
-        private static List<Marble> marbles;
+        public static List<Marble> marbles { get; private set; }
         private static Vector2 canvasSize;
         private static float defaultSpeedValue;
         private static float newMarbleRadius;

@@ -1,8 +1,10 @@
-﻿using System.Numerics;
+﻿using System.ComponentModel;
+using System.Numerics;
+using System.Runtime.CompilerServices;
 
 namespace logic
 {
-    internal class Marble
+    public class Marble : INotifyPropertyChanged
     {
         private Vector2 speed;
         public Vector2 Speed
@@ -30,6 +32,14 @@ namespace logic
             speed = _speed;
             position = _position;
             radius = _radius;
+        }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 

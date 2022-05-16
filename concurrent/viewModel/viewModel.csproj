@@ -7,11 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Class1.cs" />
+    <None Remove="viewModel" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="viewModel" />
+    <ProjectReference Include="..\logic\logic.csproj" />
+    <ProjectReference Include="..\model\model.csproj" />
   </ItemGroup>
 
 </Project>
