@@ -303,3 +303,5 @@ C:\Users\LiptonLeon\git\concurrent\test\obj\Debug\net6.0\test.genruntimeconfig.c
 C:\Users\LiptonLeon\git\concurrent\test\obj\Debug\net6.0\ref\test.dll
 C:\Users\janru\Programowanie\wspolbierzne\concurrent\test\bin\Debug\net6.0\data.dll
 C:\Users\janru\Programowanie\wspolbierzne\concurrent\test\bin\Debug\net6.0\data.pdb
+C:\Users\LiptonLeon\git\Programowanie-wspolbierzne\concurrent\test\bin\Debug\net6.0\data.dll
+C:\Users\LiptonLeon\git\Programowanie-wspolbierzne\concurrent\test\bin\Debug\net6.0\data.pdb

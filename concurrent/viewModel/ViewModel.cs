@@ -82,8 +82,8 @@ namespace viewModel
             }
         }
 
-        private ObservableCollection<Marble> marbleList;
-        public ObservableCollection<Marble> MarbleList
+        private ObservableCollection<IEllipse> marbleList;
+        public ObservableCollection<IEllipse> MarbleList
         {
             get => marbleList;
 
@@ -99,8 +99,8 @@ namespace viewModel
         private void start() 
         {
             Model.Instance.startMarbles(marbleCount, canvasWidth, canvasHeight);
+            MarbleList = Model.Instance.getEllipses();
             Console.WriteLine("Start! Ilość kulek: " + marbleCount);
-            MarbleList = Model.Marbles;
             Console.WriteLine("Start! Ilość kulek: " + marbleCount);
             Console.WriteLine("Wymiary canvas: " + canvasWidth + " " + canvasHeight);
         }

@@ -8,7 +8,8 @@ namespace logic
     {
         // singleton
         private static LogicApiImplementation implementation;
-        public ObservableCollection<Marble> marbles { get; private set; } = new ObservableCollection<Marble>();
+        private List<Marble> marbles = new List<Marble>();
+        public List<Marble> Marbles { get => marbles; set => marbles = value; }
         private static readonly object padlock = new object();
 
         public static LogicApi Implementation
@@ -45,5 +46,10 @@ namespace logic
         public abstract void DeleteMarble(int idx);
         public abstract void Start();
         public abstract void Stop();
+
+        public List<Marble> getBalls()
+        {
+            return this.marbles;
+        }
     }
 }
