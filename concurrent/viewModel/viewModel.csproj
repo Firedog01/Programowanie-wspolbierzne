@@ -1,18 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Presentation.ViewModel</AssemblyName>
+    <RootNamespace>Presentation.ViewModel</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="viewModel" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\logic\logic.csproj" />
-    <ProjectReference Include="..\model\model.csproj" />
+    <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>
 
 </Project>

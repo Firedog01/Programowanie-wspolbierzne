@@ -1,9 +1,9 @@
-﻿using logic;
+﻿using Logic;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace model
+namespace Presentation.Model
 {
     internal class Ellipse : IEllipse
     {
@@ -11,25 +11,25 @@ namespace model
         private double height;
         private double x;
         private double y;
-        internal Ellipse(logic.Marble b)
+        internal Ellipse(LogicBall b)
         {
             this.width = 2 * b.Radius;
             this.height = 2 * b.Radius;
-            this.x = b.Position.X - b.Radius;
-            this.y = b.Position.Y - b.Radius;
+            this.x = b.XPos - b.Radius;
+            this.y = b.YPos - b.Radius;
             b.PropertyChanged += update;
         }
 
         private void update(object sender, PropertyChangedEventArgs e)
         {
-            logic.Marble ball = (logic.Marble)sender;
+            LogicBall ball = (LogicBall)sender;
             if (e.PropertyName == "XPos")
             {
-                this.X = ball.Position.X - ball.Radius;
+                this.X = ball.XPos - ball.Radius;
             }
             else if (e.PropertyName == "YPos")
             {
-                this.Y = ball.Position.Y - ball.Radius;
+                this.Y = ball.YPos - ball.Radius;
             }
             else if (e.PropertyName == "Radius")
             {
@@ -88,3 +88,4 @@ namespace model
         }
     }
 }
+

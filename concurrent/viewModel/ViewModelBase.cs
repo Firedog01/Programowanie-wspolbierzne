@@ -1,9 +1,16 @@
 ﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-namespace viewModel
+namespace Presentation.ViewModel
 {
-    public class ViewModelBase
+    public class ViewModelBase : INotifyPropertyChanged
     {
+
         public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

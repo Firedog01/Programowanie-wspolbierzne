@@ -1,52 +1,64 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Presentation.Model;
+using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
-using ViewModel;
-using model;
-using System.Numerics;
-using logic;
 
-namespace viewModel
+namespace Presentation.ViewModel
 {
-    public class ViewModel : INotifyPropertyChanged
+    public class ViewModelController : ViewModelBase
     {
-
-        public ViewModel()
+        public ViewModelController(ModelAbstractAPI modelAPI = null)
         {
-            model.Model.Instance.init();
-
-            MarbleCount = 3;
             StartCommand = new RelayCommand(start);
             StopCommand = new RelayCommand(stop);
+            if (modelAPI == null)
+            {
+                this.modelApi = ModelAbstractAPI.createApi();
+            }
+            else
+            {
+                this.modelApi = modelAPI;
+            }
         }
+        public ViewModelController() : this(null) { }
 
-        // Data binding
-        public event PropertyChangedEventHandler PropertyChanged;
+        private ModelAbstractAPI modelApi;
 
-        protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private int marbleCount;
-        public int MarbleCount
-        {
-            get { return marbleCount; }
+        private int ballNumber = 5;
+        
+        public string BallNumber { 
+            get => Convert.ToString(ballNumber);
             set
             {
-                marbleCount = value;
-                RaisePropertyChanged();
-                Console.WriteLine("Zmieniono ilosc: " + value);
+                Regex regex = new Regex("^([0-9]{1,9})$");
+                if (regex.IsMatch(value))
+                {
+                    ballNumber = Convert.ToInt32(value);
+                    RaisePropertyChanged("BallNumber");
+                }
+
             }
         }
 
-        /*
+        public ICommand StartCommand { get; set; }
+
+        public ICommand StopCommand { get; set; }
+
+        private ObservableCollection<IEllipse> ballsList;
+        public ObservableCollection<IEllipse> BallsList
+        {
+            get => ballsList;
+
+            set
+            {
+                if (value.Equals(ballsList))
+                    return;
+                ballsList = value;
+                RaisePropertyChanged("BallsList");
+            }
+        }
+
         private bool startEnabled = true;
         public bool StartEnabled
         {
@@ -58,58 +70,27 @@ namespace viewModel
                 RaisePropertyChanged("StopEnabled");
             }
         }
-        public bool StopEnabled { get => !startEnabled; }*/
+        public bool StopEnabled { get => !startEnabled; }
 
-        private float canvasWidth;
-        public float CanvasWidth
+        private void start()
         {
-            get { return canvasWidth; }
-            set
+            try
             {
-                canvasWidth = value;
-                RaisePropertyChanged();
+                modelApi.start(ballNumber);
             }
-        }
-
-        private float canvasHeight;
-        public float CanvasHeight
-        {
-            get { return canvasHeight; }
-            set
+            catch (System.ArgumentException)
             {
-                canvasHeight = value;
-                RaisePropertyChanged();
+                return;
             }
+            StartEnabled = false;
+            BallsList = modelApi.getEllipses();
         }
 
-        private ObservableCollection<IEllipse> marbleList;
-        public ObservableCollection<IEllipse> MarbleList
-        {
-            get => marbleList;
-
-            set
-            {
-                marbleList = value;
-                RaisePropertyChanged("MarbleList");
-            }
-        }
-
-        // Command binding
-        public ICommand StartCommand { get; set; }
-        private void start() 
-        {
-            Model.Instance.startMarbles(marbleCount, canvasWidth, canvasHeight);
-            MarbleList = Model.Instance.getEllipses();
-            Console.WriteLine("Start! Ilość kulek: " + marbleCount);
-            Console.WriteLine("Start! Ilość kulek: " + marbleCount);
-            Console.WriteLine("Wymiary canvas: " + canvasWidth + " " + canvasHeight);
-        }
-
-        public ICommand StopCommand { get; set; }
         private void stop()
         {
-            Model.Instance.stopMarbles();
-            Console.WriteLine("Stop!");
+            modelApi.stop();
+            StartEnabled = true;
         }
+
     }
 }

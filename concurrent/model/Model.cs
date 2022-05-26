@@ -1,70 +1,65 @@
-﻿using logic;
-using logic.Event;
+﻿using Logic;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Numerics;
 
-namespace model
+namespace Presentation.Model
 {
-    public class Model
+    public abstract class ModelAbstractAPI
     {
-        //singleton
-        private static Model instance = null;
-        private static readonly object padlock = new object();
-
-        //
-        public static ObservableCollection<IEllipse> ellipses = new ObservableCollection<IEllipse>();
-        internal ObservableCollection<IEllipse> Ellipses { get => ellipses; set => ellipses = value; }
-        public static int marbleCount { get; set; }
-
-        private Model() 
+        public static ModelAbstractAPI createApi(LogicAbstractAPI logicAbstractAPI = null)
         {
-            LogicApi.Implementation.PosUpdated += new MarbleEventHandler(OnPosUpdated);
+            return new ModelAPI();
         }
 
-        public static Model Instance
+        public abstract void start(int number);
+
+        public abstract ObservableCollection<IEllipse> getEllipses();
+
+        public abstract void stop();
+
+        internal sealed class ModelAPI : ModelAbstractAPI
         {
-            get
+            internal ModelAPI(LogicAbstractAPI logicAbstractAPI = null)
             {
-                lock (padlock) // critical section
+                if (logicAbstractAPI == null)
                 {
-                    if (instance == null)
-                        instance = new Model();
-                    return instance;
+                    this.logicApi = LogicAbstractAPI.createApi();
+                }
+                else
+                {
+                    this.logicApi = logicAbstractAPI;
                 }
             }
-        }
 
-        public void init()
-        {
-            // nothing
-        }
+            private LogicAbstractAPI logicApi = LogicAbstractAPI.createApi(null);
 
-        public void OnPosUpdated(object source, MarbleArgs args)
-        {
-            
-        }
+            private ObservableCollection<IEllipse> ellipses = new ObservableCollection<IEllipse>();
 
-        public void startMarbles(int marbles, float canvasWidth, float canvasHeight)
-        {
-            logic.LogicApi.Implementation.Start();
-        }
+            internal ObservableCollection<IEllipse> Ellipses { get => ellipses; set => ellipses = value; }
 
-        public void stopMarbles()
-        {
-            LogicApi.Implementation.Stop();
-        }
-        
-        public ObservableCollection<IEllipse> getEllipses()
-        {
-            List<logic.Marble> balls = logic.LogicApi.Implementation.getBalls();
-            Ellipses.Clear();
-            foreach (logic.Marble b in balls)
+            public override void start(int number)
             {
-                Ellipses.Add(new Ellipse(b));
+                logicApi.start(700, 400, number, 20);
             }
-            return Ellipses;
-        }
 
+            public override ObservableCollection<IEllipse> getEllipses()
+            {
+                List<LogicBall> balls = logicApi.getBalls();
+                Ellipses.Clear();
+                foreach (LogicBall b in balls)
+                {
+                    Ellipses.Add(new Ellipse(b));
+                }
+                return Ellipses;
+            }
+
+            public override void stop()
+            {
+                logicApi.stop();
+            }
+        }
     }
+
+
+
 }

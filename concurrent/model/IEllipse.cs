@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel;
 
-namespace model
+namespace Presentation.Model
 {
     public interface IEllipse : INotifyPropertyChanged
     {
+        double Width { get; set; }
+        double Height { get; set; }
         double X { get; set; }
-        double Y { get; set; }
+        double Y{ get; set; }
     }
 }
