@@ -5,7 +5,7 @@ namespace Data
 {
     public abstract class DataAbstractAPI
     {
-        public abstract void createArea(int width, int height, int ballsAmount, int ballRadius);
+        public abstract void createArea(float width, float height, int ballsAmount, int ballRadius);
         public abstract List<Marble> getMarbles();
 
         public abstract void stop();
@@ -31,7 +31,7 @@ namespace Data
             public bool Active { get => active; set => active = value; }
             public override Area Area { get => area; }        
 
-            public override void createArea(int width, int height, int ballsAmount, int ballRadius)
+            public override void createArea(float width, float height, int ballsAmount, int ballRadius)
             {
                 this.area = new Area(width, height, ballsAmount, ballRadius);
                 this.Active = true;

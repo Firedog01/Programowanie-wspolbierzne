@@ -11,7 +11,7 @@ namespace Presentation.Model
             return new ModelAPI();
         }
 
-        public abstract void start(int number);
+        public abstract void start(int number, float height, float width);
 
         public abstract ObservableCollection<IEllipse> getEllipses();
 
@@ -37,9 +37,9 @@ namespace Presentation.Model
 
             internal ObservableCollection<IEllipse> Ellipses { get => ellipses; set => ellipses = value; }
 
-            public override void start(int number)
+            public override void start(int number, float height, float width)
             {
-                logicApi.start(812, 400, number, 20);
+                logicApi.start(width, height, number, 20);
             }
 
             public override ObservableCollection<IEllipse> getEllipses()

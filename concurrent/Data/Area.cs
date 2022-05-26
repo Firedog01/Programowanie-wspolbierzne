@@ -5,15 +5,15 @@ namespace Data
 {
     public class Area
     {
-        private readonly int width;
-        private readonly int height;
+        private readonly float width;
+        private readonly float height;
         private readonly List<Marble> balls = new List<Marble>();
 
-        public int Width => width;
-        public int Height => height;
+        public float Width => width;
+        public float Height => height;
         public List<Marble> Marbles => balls;
         
-        public Area(int width, int height, int marbleAmount, int marbleRadius)
+        public Area(float width, float height, int marbleAmount, int marbleRadius)
         {
             if (width <= 0 || height <= 0)
             {
@@ -24,16 +24,16 @@ namespace Data
             createMarbles(marbleAmount, marbleRadius);
         }
 
-        private Marble generateMarble(int radius) {
+        private Marble generateMarble(float radius) {
             Random rand = new Random();
             bool ok = true;
-            int x = radius;
-            int y = radius;
+            float x = radius;
+            float y = radius;
             do
             {
                 ok = true;
-                x = rand.Next(radius, this.width - radius);
-                y = rand.Next(radius, this.height - radius);
+                x = rand.Next((int)(radius), (int)(this.width - radius));
+                y = rand.Next((int)(radius), (int)(this.height - radius));
                 foreach (Marble m in this.Marbles)
                 {
                     double distance = Math.Sqrt(((m.XPos - x) * (m.XPos - x)) + ((m.YPos - y) * (m.YPos - y)));

@@ -71,12 +71,14 @@ namespace Presentation.ViewModel
             }
         }
         public bool StopEnabled { get => !startEnabled; }
+        public float CanvasHeight { get; set; }
+        public float CanvasWidth { get; set; }
 
         private void start()
         {
             try
             {
-                modelApi.start(marbleNumber);
+                modelApi.start(marbleNumber, CanvasHeight, CanvasWidth);
             }
             catch (System.ArgumentException)
             {

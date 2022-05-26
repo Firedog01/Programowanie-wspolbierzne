@@ -15,7 +15,7 @@ namespace Logic
         }
 
         public abstract List<LogicMarble> getMarbles();
-        public abstract void start(int width, int height, int marlesAmount, int marbleRadius);
+        public abstract void start(float width, float height, int marlesAmount, int marbleRadius);
         public abstract void stop();
 
         internal sealed class LogicAPI : LogicAbstractAPI
@@ -47,7 +47,7 @@ namespace Logic
                 this.Balls.Clear();
             }
 
-            public override void start(int width, int height, int ballsAmount, int ballRadius) {
+            public override void start(float width, float height, int ballsAmount, int ballRadius) {
                 dataAPI.createArea(width, height, ballsAmount, ballRadius);
                 foreach (Marble b in dataAPI.getMarbles()) {
                     this.Balls.Add(new LogicMarble(b));
