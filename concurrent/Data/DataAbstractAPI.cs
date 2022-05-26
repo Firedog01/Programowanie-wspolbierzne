@@ -6,7 +6,7 @@ namespace Data
     public abstract class DataAbstractAPI
     {
         public abstract void createArea(int width, int height, int ballsAmount, int ballRadius);
-        public abstract List<Ball> getBalls();
+        public abstract List<Marble> getMarbles();
 
         public abstract void stop();
 
@@ -35,21 +35,21 @@ namespace Data
             {
                 this.area = new Area(width, height, ballsAmount, ballRadius);
                 this.Active = true;
-                List<Ball> balls = getBalls();
+                List<Marble> marbles = getMarbles();
 
-                foreach (Ball ball in balls) {
+                foreach (Marble marble in marbles) {
                     Thread t = new Thread(() => {
                         while (this.Active)
                         {
                             lock (locked)
                             {
-                                ball.move();   
+                                marble.move();   
                             }
                             
                             if (Interlocked.CompareExchange(ref queue_cnt, 1, 0) == 0)
                             {
                                 Monitor.Enter(barrier);
-                                while (queue_cnt != balls.Count && this.Active){}
+                                while (queue_cnt != marbles.Count && this.Active){}
                                 Interlocked.Decrement(ref queue_cnt);
                                 Monitor.Exit(barrier);
                             }
@@ -68,9 +68,9 @@ namespace Data
                 }
             }
 
-            public override List<Ball> getBalls()
+            public override List<Marble> getMarbles()
             {
-                return Area.Balls;
+                return Area.Marbles;
             }
 
             public override void stop() { 

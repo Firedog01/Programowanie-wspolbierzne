@@ -5,13 +5,13 @@ using System.Runtime.CompilerServices;
 
 namespace Logic
 {
-    public class LogicBall : INotifyPropertyChanged
+    public class LogicMarble : INotifyPropertyChanged
     {
-        private Ball ball;
+        private Marble marble;
 
-        public LogicBall(Ball b) { 
-            this.ball = b;
-            b.PropertyChanged += update;
+        public LogicMarble(Marble m) { 
+            this.marble = m;
+            m.PropertyChanged += update;
         }
 
         private void update(object sender, PropertyChangedEventArgs e)
@@ -31,28 +31,28 @@ namespace Logic
 
         }
         public double XPos {
-            get => ball.XPos;
+            get => marble.XPos;
             set
             {
-                ball.XPos = value;
+                marble.XPos = value;
                 RaisePropertyChanged("XPos");
             }
         }
         public double YPos {
-            get => ball.YPos;
+            get => marble.YPos;
             set
             {
-                ball.YPos = value;
+                marble.YPos = value;
                 RaisePropertyChanged("YPos");
             }
         }
         public double Radius {
-            get => ball.Radius;
+            get => marble.Radius;
             set
             {
                 if (value > 0)
                 {
-                    ball.Radius = value;
+                    marble.Radius = value;
                     RaisePropertyChanged("Radius");
                 }
                 else

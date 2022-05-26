@@ -10,7 +10,7 @@ namespace Data.Tests
         [TestMethod]
         public void BallTest()
         {
-            Ball ball = new Ball(2, 2, 2, 2);
+            Marble ball = new Marble(2, 2, 2, 2);
             Assert.AreEqual(ball.Radius, 2);
             Assert.AreEqual(ball.XPos, 2);
             Assert.AreEqual(ball.YPos, 2);
@@ -34,7 +34,7 @@ namespace Data.Tests
         [TestMethod]
         public void moveTest()
         {
-            Ball ball = new Ball(1, 1, 1, 2);
+            Marble ball = new Marble(1, 1, 1, 2);
             double xPos = ball.XPos;
             double yPos = ball.YPos;
             ball.move();

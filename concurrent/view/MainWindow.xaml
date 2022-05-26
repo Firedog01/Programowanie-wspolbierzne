@@ -6,9 +6,9 @@
         xmlns:vm="clr-namespace:Presentation.ViewModel;assembly=Presentation.ViewModel"
         xmlns:local="clr-namespace:Presentation.View"
         mc:Ignorable="d"
-        Title="Moving balls" Height="500" Width="850" Background="#FF191919">
+        Title="Concurrent marbles (not balls)" Height="500" Width="850" ResizeMode="NoResize" Background="#FF191919">
     <Window.DataContext>
-        <vm:ViewModelController/>
+        <vm:ViewModelMarbles/>
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         <!-- SizeChanged="canvas_SizeChanged" -->
         <!-- Here marbles are contained -->
-        <ItemsControl ItemsSource="{Binding BallsList}" Margin="12,14,12,48" Grid.RowSpan="2">
+        <ItemsControl ItemsSource="{Binding MarbleList}" Margin="12,14,12,48" Grid.RowSpan="2">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Canvas Width="Auto" Height="Auto" Margin="0,0,0,0" >
@@ -113,7 +113,7 @@
             </Button>
             <Label Content="Ilość kulek:&#xA;" Foreground="White" Height="22" Padding="5,4,5,5" Margin="0,-2,0,0"/>
             <TextBox Text="{Binding Value, ElementName=countSlider, Mode=TwoWay}" x:Name="countText" TextAlignment="Center" Background="{x:Null}" Height="20" Width="18" Margin="-2,2,0,0" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" FlowDirection="LeftToRight" Padding="0,0,0,0" BorderBrush="{x:Null}" CaretBrush="White" SelectionBrush="{x:Null}" />
-            <Slider Value="{Binding BallNumber}" x:Name="countSlider" Width="172" Minimum="1" SmallChange="1" TickPlacement="BottomRight" Height="25" IsSnapToTickEnabled="True" Foreground="White" RenderTransformOrigin="0.479,0.893" Margin="0,0,0,-10" Maximum="20" Background="Transparent"/>
+            <Slider Value="{Binding MarbleNumber}" x:Name="countSlider" Width="172" Minimum="1" SmallChange="1" TickPlacement="BottomRight" Height="25" IsSnapToTickEnabled="True" Foreground="White" RenderTransformOrigin="0.479,0.893" Margin="0,0,0,-10" Maximum="20" Background="Transparent"/>
         </StackPanel>
     </Grid>
 </Window>

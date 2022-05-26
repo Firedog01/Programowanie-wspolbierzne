@@ -7,13 +7,13 @@ namespace Data
     {
         private readonly int width;
         private readonly int height;
-        private readonly List<Ball> balls = new List<Ball>();
+        private readonly List<Marble> balls = new List<Marble>();
 
         public int Width => width;
         public int Height => height;
-        public List<Ball> Balls => balls;
+        public List<Marble> Marbles => balls;
         
-        public Area(int width, int height, int ballsAmount, int ballRadius)
+        public Area(int width, int height, int marbleAmount, int marbleRadius)
         {
             if (width <= 0 || height <= 0)
             {
@@ -21,10 +21,10 @@ namespace Data
             }
             this.width = width;
             this.height = height;
-            createBalls(ballsAmount, ballRadius);
+            createMarbles(marbleAmount, marbleRadius);
         }
 
-        private Ball generateBall(int radius) {
+        private Marble generateMarble(int radius) {
             Random rand = new Random();
             bool ok = true;
             int x = radius;
@@ -34,10 +34,10 @@ namespace Data
                 ok = true;
                 x = rand.Next(radius, this.width - radius);
                 y = rand.Next(radius, this.height - radius);
-                foreach (Ball b in this.Balls)
+                foreach (Marble m in this.Marbles)
                 {
-                    double distance = Math.Sqrt(((b.XPos - x) * (b.XPos - x)) + ((b.YPos - y) * (b.YPos - y)));
-                    if (distance <= b.Radius + radius)
+                    double distance = Math.Sqrt(((m.XPos - x) * (m.XPos - x)) + ((m.YPos - y) * (m.YPos - y)));
+                    if (distance <= m.Radius + radius)
                     {
                         ok = false;
                         break;
@@ -51,9 +51,9 @@ namespace Data
 
             } while (!ok);
             double w = 1;
-            return new Ball(x, y, w * radius, w);
+            return new Marble(x, y, w * radius, w);
         }
-        public void createBalls(int amount, int radius)
+        public void createMarbles(int amount, int radius)
         {
             if (2 * radius > width || 2 * radius > height || radius <= 0 || amount <= 0)
             {
@@ -62,8 +62,8 @@ namespace Data
             
             for (int i = 0; i < amount; i++)
             {
-                Ball ball = generateBall(radius);
-                this.Balls.Add(ball);
+                Marble marble = generateMarble(radius);
+                this.Marbles.Add(marble);
             }
         }
     }

@@ -11,7 +11,7 @@ namespace Presentation.Model
         private double height;
         private double x;
         private double y;
-        internal Ellipse(LogicBall b)
+        internal Ellipse(LogicMarble b)
         {
             this.width = 2 * b.Radius;
             this.height = 2 * b.Radius;
@@ -22,19 +22,19 @@ namespace Presentation.Model
 
         private void update(object sender, PropertyChangedEventArgs e)
         {
-            LogicBall ball = (LogicBall)sender;
+            LogicMarble marble = (LogicMarble)sender;
             if (e.PropertyName == "XPos")
             {
-                this.X = ball.XPos - ball.Radius;
+                this.X = marble.XPos - marble.Radius;
             }
             else if (e.PropertyName == "YPos")
             {
-                this.Y = ball.YPos - ball.Radius;
+                this.Y = marble.YPos - marble.Radius;
             }
             else if (e.PropertyName == "Radius")
             {
-                this.Width = 2 * ball.Radius;
-                this.Height = 2 * ball.Radius;
+                this.Width = 2 * marble.Radius;
+                this.Height = 2 * marble.Radius;
             }
             else
             {

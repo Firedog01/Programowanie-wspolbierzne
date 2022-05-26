@@ -12,9 +12,9 @@ namespace Logic.Tests
         {
             LogicAbstractAPI test = LogicAbstractAPI.createApi();
             test.start(600, 400, 50, 2);
-            List<LogicBall> ballList = test.getBalls();
+            List<LogicMarble> ballList = test.getMarbles();
             Assert.AreEqual(ballList.Count, 50);
-            foreach (LogicBall ball in ballList)
+            foreach (LogicMarble ball in ballList)
             {
                 Assert.AreEqual(ball.Radius, 2);
                 Assert.IsTrue((ball.XPos - ball.Radius) >= 0 - 2 && (ball.XPos + ball.Radius) <= 600 + 2);

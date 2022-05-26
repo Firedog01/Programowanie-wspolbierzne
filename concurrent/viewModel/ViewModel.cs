@@ -6,9 +6,9 @@ using System.Windows.Input;
 
 namespace Presentation.ViewModel
 {
-    public class ViewModelController : ViewModelBase
+    public class ViewModelMarbles : ViewModelBase
     {
-        public ViewModelController(ModelAbstractAPI modelAPI = null)
+        public ViewModelMarbles(ModelAbstractAPI modelAPI = null)
         {
             StartCommand = new RelayCommand(start);
             StopCommand = new RelayCommand(stop);
@@ -21,21 +21,21 @@ namespace Presentation.ViewModel
                 this.modelApi = modelAPI;
             }
         }
-        public ViewModelController() : this(null) { }
+        public ViewModelMarbles() : this(null) { }
 
         private ModelAbstractAPI modelApi;
 
-        private int ballNumber = 5;
+        private int marbleNumber = 5;
         
-        public string BallNumber { 
-            get => Convert.ToString(ballNumber);
+        public string MarbleNumber { 
+            get => Convert.ToString(marbleNumber);
             set
             {
                 Regex regex = new Regex("^([0-9]{1,9})$");
                 if (regex.IsMatch(value))
                 {
-                    ballNumber = Convert.ToInt32(value);
-                    RaisePropertyChanged("BallNumber");
+                    marbleNumber = Convert.ToInt32(value);
+                    RaisePropertyChanged("MarbleNumber");
                 }
 
             }
@@ -45,17 +45,17 @@ namespace Presentation.ViewModel
 
         public ICommand StopCommand { get; set; }
 
-        private ObservableCollection<IEllipse> ballsList;
-        public ObservableCollection<IEllipse> BallsList
+        private ObservableCollection<IEllipse> marbleList;
+        public ObservableCollection<IEllipse> MarbleList
         {
-            get => ballsList;
+            get => marbleList;
 
             set
             {
-                if (value.Equals(ballsList))
+                if (value.Equals(marbleList))
                     return;
-                ballsList = value;
-                RaisePropertyChanged("BallsList");
+                marbleList = value;
+                RaisePropertyChanged("MarbleList");
             }
         }
 
@@ -76,14 +76,14 @@ namespace Presentation.ViewModel
         {
             try
             {
-                modelApi.start(ballNumber);
+                modelApi.start(marbleNumber);
             }
             catch (System.ArgumentException)
             {
                 return;
             }
             StartEnabled = false;
-            BallsList = modelApi.getEllipses();
+            MarbleList = modelApi.getEllipses();
         }
 
         private void stop()

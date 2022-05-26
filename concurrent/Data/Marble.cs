@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Data
 {
-    public class Ball : INotifyPropertyChanged
+    public class Marble : INotifyPropertyChanged
     {
         private double xPos;
         private double yPos;
@@ -12,7 +12,7 @@ namespace Data
         private double weight;
         private double[] speed = new double[2];
 
-        public Ball(double x, double y, double radius, double weight)
+        public Marble(double x, double y, double radius, double weight)
         {
             this.xPos = x;
             this.yPos = y;

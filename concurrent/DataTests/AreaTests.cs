@@ -20,8 +20,8 @@ namespace Data.Tests
 
             Area area = new Area(12, 12, 3, 1);
 
-            Assert.AreNotEqual(area.Balls.Count, 2);
-            Assert.AreEqual(area.Balls.Count, 3);
+            Assert.AreNotEqual(area.Marbles.Count, 2);
+            Assert.AreEqual(area.Marbles.Count, 3);
             Assert.AreEqual(area.Width, 12);
             Assert.AreEqual(area.Height, 12);
 

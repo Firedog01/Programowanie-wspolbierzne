@@ -14,8 +14,8 @@ namespace Logic
             return new LogicAPI(dataAbstractAPI);
         }
 
-        public abstract List<LogicBall> getBalls();
-        public abstract void start(int width, int height, int ballsAmount, int ballRadius);
+        public abstract List<LogicMarble> getMarbles();
+        public abstract void start(int width, int height, int marlesAmount, int marbleRadius);
         public abstract void stop();
 
         internal sealed class LogicAPI : LogicAbstractAPI
@@ -24,10 +24,10 @@ namespace Logic
 
             bool active = false;
 
-            private List<LogicBall> balls = new List<LogicBall>();
+            private List<LogicMarble> marbles = new List<LogicMarble>();
             
             public bool Active { get => active; set => active = value; }
-            public List<LogicBall> Balls { get => balls; set => balls = value; }
+            public List<LogicMarble> Balls { get => marbles; set => marbles = value; }
 
             internal LogicAPI(DataAbstractAPI dataAbstractAPI = null)
             {
@@ -49,27 +49,27 @@ namespace Logic
 
             public override void start(int width, int height, int ballsAmount, int ballRadius) {
                 dataAPI.createArea(width, height, ballsAmount, ballRadius);
-                foreach (Ball b in dataAPI.getBalls()) {
-                    this.Balls.Add(new LogicBall(b));
+                foreach (Marble b in dataAPI.getMarbles()) {
+                    this.Balls.Add(new LogicMarble(b));
                     b.PropertyChanged += update;
                 }
             }
-            public override List<LogicBall> getBalls()
+            public override List<LogicMarble> getMarbles()
             {
                 return this.Balls;
             }
 
             private void update(object sender, PropertyChangedEventArgs e)
             {
-                Ball ball = (Ball)sender;
+                Marble marble = (Marble)sender;
                 if (e.PropertyName == "Position")
                 {
-                    collide(ball);
+                    collide(marble);
                 }
 
             }
 
-            private void borderCollision(Ball main) {
+            private void borderCollision(Marble main) {
                 if ((main.XPos + main.Radius) >= dataAPI.Area.Width)
                 {
                     main.xSpeed = -main.xSpeed;
@@ -92,31 +92,31 @@ namespace Logic
                 }
             }
 
-            private void ballCollision(Ball main) {
-                foreach (Ball b in dataAPI.getBalls())
+            private void marbleCollision(Marble main) {
+                foreach (Marble m in dataAPI.getMarbles())
                 {
-                    if (b == main)
+                    if (m == main)
                     {
                         continue;
                     }
-                    double xCol = b.XPos - main.XPos;
-                    double yCol = b.YPos - main.YPos;
+                    double xCol = m.XPos - main.XPos;
+                    double yCol = m.YPos - main.YPos;
                     double distance = Math.Sqrt((xCol * xCol) + (yCol * yCol));
-                    if (distance <= (main.Radius + b.Radius))
+                    if (distance <= (main.Radius + m.Radius))
                     {
-                        double newB = ((b.xSpeed * (b.Weight - main.Weight) + (2 * main.Weight * main.xSpeed)) / (b.Weight + main.Weight));
-                        main.xSpeed = ((main.xSpeed * (main.Weight - b.Weight) + (2 * b.Weight * b.xSpeed)) / (b.Weight + main.Weight));
-                        b.xSpeed = newB;
+                        double newB = ((m.xSpeed * (m.Weight - main.Weight) + (2 * main.Weight * main.xSpeed)) / (m.Weight + main.Weight));
+                        main.xSpeed = ((main.xSpeed * (main.Weight - m.Weight) + (2 * m.Weight * m.xSpeed)) / (m.Weight + main.Weight));
+                        m.xSpeed = newB;
 
-                        newB = ((b.ySpeed * (b.Weight - main.Weight)) + (2 * main.Weight * main.ySpeed) / (b.Weight + main.Weight));
-                        main.ySpeed = ((main.ySpeed * (main.Weight - b.Weight)) + (2 * b.Weight * b.ySpeed) / (b.Weight + main.Weight));
-                        b.ySpeed = newB;
+                        newB = ((m.ySpeed * (m.Weight - main.Weight)) + (2 * main.Weight * main.ySpeed) / (m.Weight + main.Weight));
+                        main.ySpeed = ((main.ySpeed * (main.Weight - m.Weight)) + (2 * m.Weight * m.ySpeed) / (m.Weight + main.Weight));
+                        m.ySpeed = newB;
                     }
                 }
             }
-            private void collide(Ball main) {
+            private void collide(Marble main) {
                 borderCollision(main);
-                ballCollision(main);                
+                marbleCollision(main);                
             }
         }
     }

@@ -39,14 +39,14 @@ namespace Presentation.Model
 
             public override void start(int number)
             {
-                logicApi.start(700, 400, number, 20);
+                logicApi.start(812, 400, number, 20);
             }
 
             public override ObservableCollection<IEllipse> getEllipses()
             {
-                List<LogicBall> balls = logicApi.getBalls();
+                List<LogicMarble> marbles = logicApi.getMarbles();
                 Ellipses.Clear();
-                foreach (LogicBall b in balls)
+                foreach (LogicMarble b in marbles)
                 {
                     Ellipses.Add(new Ellipse(b));
                 }
