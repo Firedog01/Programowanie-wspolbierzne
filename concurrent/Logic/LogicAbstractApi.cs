@@ -48,7 +48,7 @@ namespace Logic
             }
 
             public override void start(float width, float height, int ballsAmount, int ballRadius) {
-                dataAPI.createArea(width, height, ballsAmount, ballRadius);
+                dataAPI.createArea((int) width, (int)height, ballsAmount, ballRadius);
                 foreach (Marble b in dataAPI.getMarbles()) {
                     this.Balls.Add(new LogicMarble(b));
                     b.PropertyChanged += update;

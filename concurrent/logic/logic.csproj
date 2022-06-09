@@ -13,4 +13,8 @@
 			<_Parameter1>LogicTests</_Parameter1>
 		</AssemblyAttribute>
 	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="System.Text.Json" Version="6.0.4" />
+	</ItemGroup>
 </Project>
